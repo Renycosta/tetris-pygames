@@ -59,7 +59,7 @@ class Grid:
         for row in range(self.num_rows):
             for column in range(self.num_cols):
                 cell_value = self.grid[row][column]
-                cell_rect = pygame.Rect(column*self.cell_size +1, row*self.cell_size +1, self.cell_size  -1, self.cell_size -1) # pygame.Rect(x, y, width, height)
+                cell_rect = pygame.Rect(column*self.cell_size +11, row*self.cell_size +11, self.cell_size  -1, self.cell_size -1) # pygame.Rect(x, y, width, height)
                 pygame.draw.rect(screen, self.colors[cell_value], cell_rect)
         
         
