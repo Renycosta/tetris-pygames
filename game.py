@@ -10,6 +10,27 @@ class Game:
         self.next_block = self.get_random_block()
         self.game_over = False
         self.score = 0
+        self.player_name = ""
+
+    def save_score(self):
+        try:
+            with open("scores.txt", "a", encoding="utf-8") as file:
+                file.write(f"{self.player_name};{self.score}\n")
+        except Exception as e:
+            print(f"Erro ao salvar: {e}")
+    
+    def get_high_scores(self):
+        scores = []
+        try:
+            with open("scores.txt", "r", encoding="utf-8") as file:
+                for line in file:
+                    parts = line.strip().split(";")
+                    if len(parts) == 2:
+                        scores.append((parts[0], int(parts[1])))
+            scores.sort(key=lambda x: x[1], reverse=True)
+            return scores[:5]
+        except FileNotFoundError:
+            return []
 
     def update_score(self, lines_cleared, move_down_points):
         if lines_cleared == 1:
